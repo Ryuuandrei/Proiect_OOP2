@@ -15,7 +15,6 @@ import realistic.Notification;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public final class Main {
     public static int i = 0;
@@ -62,13 +61,6 @@ public final class Main {
 
             ActualMovie movie = null;
             if (!application.getEntity().getCurrentUser().getLikedGenres().isEmpty()) {
-//                String genre = Collections.max(application.getEntity().getCurrentUser().getLikedGenres().entrySet(), Map.Entry.comparingByValue()).getKey();
-//                movie = application.getEntity().getCurrentMoviesList().stream().filter(actualMovie -> actualMovie.getGenres().contains(genre)).max(new Comparator<ActualMovie>() {
-//                    @Override
-//                    public int compare(ActualMovie o1, ActualMovie o2) {
-//                        return o1.getNumLikes() - o2.getNumLikes();
-//                    }
-//                }).get();
 
                 ArrayList<ActualMovie> availableMovies = new ArrayList<>(application.getMoviesData());
                 availableMovies.removeIf(actualMovie -> actualMovie.getCountriesBanned()
@@ -84,7 +76,11 @@ public final class Main {
 
                 for (var genre : sortedGenres) {
                     for (var recommendedMovie : availableMovies) {
-                        if (recommendedMovie.getGenres().contains(genre) && !application.getEntity().getCurrentUser().getLikedMovies().contains(recommendedMovie)) {
+                        if (recommendedMovie.getGenres().contains(genre)
+                                && !application.getEntity()
+                                .getCurrentUser()
+                                .getLikedMovies()
+                                .contains(recommendedMovie)) {
                             movie = recommendedMovie;
                             break;
                         }
@@ -111,7 +107,7 @@ public final class Main {
 
         i++;
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
-        objectWriter.writeValue(new File("output/results" + i + ".txt"), output);
+        objectWriter.writeValue(new File(args[1]), output);
 
     }
 }

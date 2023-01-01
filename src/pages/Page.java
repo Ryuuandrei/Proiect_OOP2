@@ -17,143 +17,142 @@ import java.util.stream.Collectors;
 
 public class Page {
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final ActionChangePage actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final ActionOnPage actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final LoginFeature actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final RegisterFeature actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final Search actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final FilterFeature actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final BuyTokens actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final BuyPremiumAccount actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final Purchase actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final Like actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final Rate actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final Watch actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final ChPgLogin actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final ChPgRegister actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final ChPgMovies actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final ChPgSeeDetails actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
     public void visit(final ChPgUpgrades actionInput, final Application application) {
         application.getEntity().setError("Error");
     }
+
     /**
-     *
      * @param actionInput the action that has to be performed
      * @param application the application
      */
@@ -212,12 +211,16 @@ public class Page {
     }
 
     public void visit(final DatabaseDelete actionInput, final Application application) {
-        try {
-            application.getMoviesData().removeIf(actualMovie -> actualMovie.getName().equals(actionInput.getDeletedMovie()));
-        } catch (Exception e) {
+
+        if (application.getMoviesData().stream().noneMatch(actualMovie -> actualMovie.getName().equals(actionInput.getDeletedMovie()))) {
             application.getEntity().setError("Error");
+            return;
         }
+
+        application.getMoviesData().removeIf(actualMovie -> actualMovie.getName().equals(actionInput.getDeletedMovie()));
+
     }
+
     /**
      * shows the current page
      */
