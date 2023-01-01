@@ -4,7 +4,6 @@ import fileio.Sort;
 import realistic.ActualMovie;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.stream.Collectors;
 
 public final class SortStrategy implements FilterStrategy {
     private final ArrayList<ActualMovie> movies;

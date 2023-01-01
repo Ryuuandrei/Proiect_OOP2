@@ -1,9 +1,8 @@
 package command.Strategy;
 
-import fileio.Contain;
-import fileio.Sort;
-import realistic.ErrorEntity;
-
 public interface FilterStrategy {
+    /**
+     * used to filter through the movies
+     */
     void filter();
 }

@@ -11,12 +11,8 @@ import java.util.ArrayList;
 
 public final class Upgrades extends Page {
     private static Upgrades instance = null;
-//    private static final BannedStrategy BANNED;
-    private static final int COSTPREMIUM = 10;
 
-//    static {
-//        BANNED = new BannedStrategy();
-//    }
+    private static final int COSTPREMIUM = 10;
 
     private Upgrades() {
     }

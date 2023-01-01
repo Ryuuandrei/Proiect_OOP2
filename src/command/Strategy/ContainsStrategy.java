@@ -2,7 +2,6 @@ package command.Strategy;
 
 import fileio.Contain;
 import realistic.ActualMovie;
-import realistic.ErrorEntity;
 
 import java.util.ArrayList;
 

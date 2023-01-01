@@ -6,7 +6,6 @@ import fileio.UserInput;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public final class ActualUser extends UserInput {
     private int tokensCount;
@@ -56,15 +55,11 @@ public final class ActualUser extends UserInput {
         this.setCredentials(new Credentials(other.getCredentials()));
     }
 
-    public void setLikedGenres(HashMap<String, Integer> likedGenres) {
-        this.likedGenres = likedGenres;
-    }
-
     public ArrayList<String> getSubscribedGenres() {
         return subscribedGenres;
     }
 
-    public void setSubscribedGenres(ArrayList<String> subscribedGenres) {
+    public void setSubscribedGenres(final ArrayList<String> subscribedGenres) {
         this.subscribedGenres = subscribedGenres;
     }
 
@@ -72,7 +67,7 @@ public final class ActualUser extends UserInput {
         return likedGenres;
     }
 
-    public void setLikedGeneres(final HashMap<String, Integer> likedGenres) {
+    public void setLikedGenres(final HashMap<String, Integer> likedGenres) {
         this.likedGenres = likedGenres;
     }
 

@@ -62,7 +62,9 @@ public final class Main {
             ActualMovie movie = null;
             if (!application.getEntity().getCurrentUser().getLikedGenres().isEmpty()) {
 
-                ArrayList<ActualMovie> availableMovies = new ArrayList<>(application.getMoviesData());
+                ArrayList<ActualMovie> availableMovies =
+                        new ArrayList<>(application.getMoviesData());
+
                 availableMovies.removeIf(actualMovie -> actualMovie.getCountriesBanned()
                         .contains(application.getEntity()
                                 .getCurrentUser()

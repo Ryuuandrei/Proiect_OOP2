@@ -99,7 +99,11 @@ public final class ErrorEntity {
         return null;
     }
 
-    public void filter(FilterStrategy filterStrategy) {
+    /**
+     *
+     * @param filterStrategy the filtering option
+     */
+    public void filter(final FilterStrategy filterStrategy) {
         filterStrategy.filter();
     }
 

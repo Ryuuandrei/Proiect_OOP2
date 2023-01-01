@@ -1,7 +1,6 @@
 package fileio;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class MovieInput {
     private String name;
@@ -119,11 +118,20 @@ public class MovieInput {
         this.countriesBanned = countriesBanned;
     }
 
+    /**
+     *
+     * @return hashcode
+     */
     @Override
     public int hashCode() {
         return super.hashCode();
     }
 
+    /**
+     *
+     * @param obj the object to be compared with the current instance
+     * @return true if the objects have the same name, false otherwise
+     */
     @Override
     public boolean equals(final Object obj) {
         try {

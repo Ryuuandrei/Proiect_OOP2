@@ -1,7 +1,6 @@
 package command.Strategy;
 
 import realistic.ActualMovie;
-import realistic.ErrorEntity;
 
 import java.util.ArrayList;
 

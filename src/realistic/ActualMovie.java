@@ -2,9 +2,6 @@ package realistic;
 
 import fileio.MovieInput;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +19,8 @@ public final class ActualMovie extends MovieInput implements Comparable<ActualMo
         return usersThatLikedTheMovie;
     }
 
-    public void setUsersThatLikedTheMovie(final HashMap<ActualUser, Boolean> usersThatLikedTheMovie) {
+    public void setUsersThatLikedTheMovie(final HashMap<ActualUser,
+            Boolean> usersThatLikedTheMovie) {
         this.usersThatLikedTheMovie = usersThatLikedTheMovie;
     }
 
@@ -68,6 +66,7 @@ public final class ActualMovie extends MovieInput implements Comparable<ActualMo
         this.numLikes = other.numLikes;
         this.numRatings = other.numRatings;
         this.ratings = other.ratings;
+        this.usersThatLikedTheMovie = other.usersThatLikedTheMovie;
     }
 
     /**
@@ -84,7 +83,7 @@ public final class ActualMovie extends MovieInput implements Comparable<ActualMo
     }
 
     @Override
-    public int compareTo(ActualMovie o) {
+    public int compareTo(final ActualMovie o) {
         return Integer.compare(o.numLikes, numLikes);
     }
 }

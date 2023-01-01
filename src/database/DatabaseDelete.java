@@ -5,7 +5,7 @@ import fileio.ActionInput;
 import pages.Page;
 import realistic.Application;
 
-public class DatabaseDelete extends Database {
+public final class DatabaseDelete extends Database {
     private String deletedMovie;
     public DatabaseDelete(final ActionInput a) {
         super(a);
@@ -16,12 +16,12 @@ public class DatabaseDelete extends Database {
         return deletedMovie;
     }
 
-    public void setDeletedMovie(String deletedMovie) {
+    public void setDeletedMovie(final String deletedMovie) {
         this.deletedMovie = deletedMovie;
     }
 
     @Override
-    public void accept(Page page, Application application) {
+    public void accept(final Page page, final Application application) {
         page.visit(this, application);
     }
 }

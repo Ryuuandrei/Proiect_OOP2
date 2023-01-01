@@ -10,11 +10,6 @@ import java.util.ArrayList;
 
 public final class HomePageAuthenticated extends Page {
     private static HomePageAuthenticated instance = null;
-//    private static final BannedStrategy BANNED;
-//
-//    static {
-//        BANNED = new BannedStrategy();
-//    }
 
     private HomePageAuthenticated() {
     }

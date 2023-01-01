@@ -6,7 +6,7 @@ import fileio.MovieInput;
 import pages.Page;
 import realistic.Application;
 
-public class DatabaseAdd extends Database {
+public final class DatabaseAdd extends Database {
     private MovieInput addedMovie;
     public DatabaseAdd(final ActionInput a) {
         super(a);
@@ -16,12 +16,12 @@ public class DatabaseAdd extends Database {
         return addedMovie;
     }
 
-    public void setAddedMovie(MovieInput addedMovie) {
+    public void setAddedMovie(final MovieInput addedMovie) {
         this.addedMovie = addedMovie;
     }
 
     @Override
-    public void accept(Page page, Application application) {
+    public void accept(final Page page, final Application application) {
         page.visit(this, application);
     }
 }

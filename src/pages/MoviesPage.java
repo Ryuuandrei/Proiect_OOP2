@@ -16,15 +16,6 @@ import java.util.stream.Collectors;
 
 public final class MoviesPage extends Page {
     private static MoviesPage instance = null;
-//    private static final BannedStrategy BANNED;
-//    private static final SortStrategy SORT;
-//    private static final ContainsStrategy CONTAINS;
-//
-//    static {
-//        BANNED = new BannedStrategy();
-//        SORT = new SortStrategy();
-//        CONTAINS = new ContainsStrategy();
-//    }
 
     private MoviesPage() {
     }
@@ -76,7 +67,7 @@ public final class MoviesPage extends Page {
     }
 
     @Override
-    public void visit(ChPgUpgrades actionInput, Application application) {
+    public void visit(final ChPgUpgrades actionInput, final Application application) {
         application.getPageStack().push(actionInput);
         application.setCurrentPage(Upgrades.getInstance());
     }

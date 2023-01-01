@@ -14,13 +14,8 @@ import java.util.stream.Collectors;
 
 public final class SeeDetails extends Page {
     private static SeeDetails instance = null;
-//    private static final BannedStrategy BANNED;
 
     private static final int MAXRATING = 5;
-
-//    static {
-//        BANNED = new BannedStrategy();
-//    }
 
     private SeeDetails() {
     }
@@ -85,7 +80,8 @@ public final class SeeDetails extends Page {
         }
 
         if (application.getEntity().getCurrentUser().getPurchasedMovies().stream()
-                .anyMatch((actualMovie -> actualMovie.equals(application.getEntity().getCurrentMoviesList().get(0))))) {
+                .anyMatch((actualMovie -> actualMovie.equals(application.getEntity()
+                        .getCurrentMoviesList().get(0))))) {
             super.visit(actionInput, application);
             return;
         }
@@ -116,7 +112,8 @@ public final class SeeDetails extends Page {
         }
 
         if (application.getEntity().getCurrentUser().getWatchedMovies().stream()
-                .anyMatch((actualMovie -> actualMovie.equals(application.getEntity().getCurrentMoviesList().get(0))))) {
+                .anyMatch((actualMovie -> actualMovie.equals(application.getEntity()
+                        .getCurrentMoviesList().get(0))))) {
             application.getEntity().setError("other");
             return;
         }
@@ -141,8 +138,9 @@ public final class SeeDetails extends Page {
         }
 
         if (application.getEntity().getCurrentUser().getLikedMovies().stream()
-                .anyMatch((actualMovie -> actualMovie.equals(application.getEntity().getCurrentMoviesList().get(0))))) {
-            application.getEntity().setError("pula");
+                .anyMatch((actualMovie -> actualMovie.equals(application.getEntity()
+                        .getCurrentMoviesList().get(0))))) {
+            application.getEntity().setError("other");
             return;
         }
 
@@ -179,12 +177,6 @@ public final class SeeDetails extends Page {
             application.getEntity().setError("Error");
             return;
         }
-//
-//        if (application.getEntity().getCurrentUser().getRatedMovies().stream()
-//                .anyMatch((actualMovie -> actualMovie.equals(application.getEntity().getCurrentMoviesList().get(0))))) {
-//            super.visit(actionInput, application);
-//            return;
-//        }
 
         if (application.getEntity().getCurrentUser().getWatchedMovies().stream()
                 .noneMatch(o -> o.getName().equals(application.getEntity()
@@ -208,7 +200,7 @@ public final class SeeDetails extends Page {
     }
 
     @Override
-    public void visit(Subscribe actionInput, Application application) {
+    public void visit(final Subscribe actionInput, final Application application) {
         if (application.getEntity().getCurrentUser().getSubscribedGenres().contains(actionInput
                 .getSubscribedGenre())) {
             super.visit(actionInput, application);

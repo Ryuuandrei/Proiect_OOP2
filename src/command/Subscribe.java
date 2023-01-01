@@ -4,7 +4,7 @@ import fileio.ActionInput;
 import pages.Page;
 import realistic.Application;
 
-public final class Subscribe extends Action{
+public final class Subscribe extends Action {
     private String subscribedGenre;
 
     public String getSubscribedGenre() {

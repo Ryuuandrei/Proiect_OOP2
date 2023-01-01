@@ -1,7 +1,5 @@
 package fileio;
 
-import realistic.ActualMovie;
-
 public final class ActionInput {
     private String type;
     private String page;
