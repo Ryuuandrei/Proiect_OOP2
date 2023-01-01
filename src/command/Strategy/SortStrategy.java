@@ -2,37 +2,35 @@ package command.Strategy;
 
 import fileio.Sort;
 import realistic.ActualMovie;
-import realistic.ErrorEntity;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
-public final class SortStrategy extends FilterStrategy {
+public final class SortStrategy implements FilterStrategy {
+    private final ArrayList<ActualMovie> movies;
+    private final Sort sort;
+
+    public SortStrategy(final ArrayList<ActualMovie> movies, final Sort sort) {
+        this.movies = movies;
+        this.sort = sort;
+    }
+
     @Override
-    public void filter(final ErrorEntity e, final Sort sort) {
+    public void filter() {
 
         if (sort.getRating() != null) {
             if (sort.getRating().equals("decreasing")) {
-                e.setCurrentMoviesList(new ArrayList<>(e.getCurrentMoviesList().stream()
-                        .sorted((o1, o2) -> Double.compare(o2.getRating(), o1.getRating()))
-                        .collect(Collectors.toList())));
+                movies.sort((o1, o2) -> Double.compare(o2.getRating(), o1.getRating()));
             } else {
-                e.setCurrentMoviesList(new ArrayList<>(e.getCurrentMoviesList().stream()
-                        .sorted(Comparator.comparingDouble(ActualMovie::getRating))
-                        .collect(Collectors.toList())));
+                movies.sort(Comparator.comparingDouble(ActualMovie::getRating));
             }
         }
 
         if (sort.getDuration() != null) {
             if (sort.getDuration().equals("decreasing")) {
-                e.setCurrentMoviesList(new ArrayList<>(e.getCurrentMoviesList().stream()
-                        .sorted((o1, o2) -> Integer.compare(o2.getDuration(), o1.getDuration()))
-                        .collect(Collectors.toList())));
+                movies.sort((o1, o2) -> Integer.compare(o2.getDuration(), o1.getDuration()));
             } else {
-                e.setCurrentMoviesList(new ArrayList<>(e.getCurrentMoviesList().stream()
-                        .sorted(Comparator.comparingInt(ActualMovie::getDuration))
-                        .collect(Collectors.toList())));
+                movies.sort(Comparator.comparingInt(ActualMovie::getDuration));
             }
         }
     }

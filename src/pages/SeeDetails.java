@@ -14,13 +14,13 @@ import java.util.stream.Collectors;
 
 public final class SeeDetails extends Page {
     private static SeeDetails instance = null;
-    private static final BannedStrategy BANNED;
+//    private static final BannedStrategy BANNED;
 
     private static final int MAXRATING = 5;
 
-    static {
-        BANNED = new BannedStrategy();
-    }
+//    static {
+//        BANNED = new BannedStrategy();
+//    }
 
     private SeeDetails() {
     }
@@ -41,8 +41,12 @@ public final class SeeDetails extends Page {
         application.getPageStack().push(actionInput);
         application.setCurrentPage(MoviesPage.getInstance());
         application.getEntity().setCurrentMoviesList(new ArrayList<>(application.getMoviesData()));
-        BANNED.filter(application.getEntity(), application.getEntity().getCurrentUser()
-                .getCredentials().getCountry());
+        application.getEntity()
+                .filter(new BannedStrategy(application.getEntity().getCurrentMoviesList(),
+                        application.getEntity()
+                                .getCurrentUser()
+                                .getCredentials()
+                                .getCountry()));
     }
 
     @Override

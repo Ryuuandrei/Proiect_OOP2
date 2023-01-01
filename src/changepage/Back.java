@@ -1,7 +1,6 @@
 package changepage;
 
 import command.ActionChangePage;
-import fileio.ActionInput;
 import pages.Page;
 import realistic.Application;
 

@@ -16,15 +16,15 @@ import java.util.stream.Collectors;
 
 public final class MoviesPage extends Page {
     private static MoviesPage instance = null;
-    private static final BannedStrategy BANNED;
-    private static final SortStrategy SORT;
-    private static final ContainsStrategy CONTAINS;
-
-    static {
-        BANNED = new BannedStrategy();
-        SORT = new SortStrategy();
-        CONTAINS = new ContainsStrategy();
-    }
+//    private static final BannedStrategy BANNED;
+//    private static final SortStrategy SORT;
+//    private static final ContainsStrategy CONTAINS;
+//
+//    static {
+//        BANNED = new BannedStrategy();
+//        SORT = new SortStrategy();
+//        CONTAINS = new ContainsStrategy();
+//    }
 
     private MoviesPage() {
     }
@@ -58,8 +58,12 @@ public final class MoviesPage extends Page {
             application.setCurrentPage(MoviesPage.getInstance());
             application.getEntity().setCurrentMoviesList(new ArrayList<>(application
                     .getMoviesData()));
-            BANNED.filter(application.getEntity(), application.getEntity().getCurrentUser()
-                    .getCredentials().getCountry());
+            application.getEntity()
+                    .filter(new BannedStrategy(application.getEntity().getCurrentMoviesList(),
+                            application.getEntity()
+                                    .getCurrentUser()
+                                    .getCredentials()
+                                    .getCountry()));
         }
     }
 
@@ -81,8 +85,12 @@ public final class MoviesPage extends Page {
     public void visit(final Search actionInput, final Application application) {
 
         application.getEntity().setCurrentMoviesList(new ArrayList<>(application.getMoviesData()));
-        BANNED.filter(application.getEntity(), application.getEntity().getCurrentUser()
-                .getCredentials().getCountry());
+        application.getEntity()
+                .filter(new BannedStrategy(application.getEntity().getCurrentMoviesList(),
+                        application.getEntity()
+                                .getCurrentUser()
+                                .getCredentials()
+                                .getCountry()));
 
         application.getEntity().getCurrentMoviesList().removeIf(actualMovie -> !(actualMovie
                 .getName().startsWith(actionInput.getStartsWith())));
@@ -92,15 +100,23 @@ public final class MoviesPage extends Page {
     public void visit(final FilterFeature actionInput, final Application application) {
 
         application.getEntity().setCurrentMoviesList(new ArrayList<>(application.getMoviesData()));
-        BANNED.filter(application.getEntity(), application.getEntity().getCurrentUser()
-                .getCredentials().getCountry());
+        application.getEntity()
+                .filter(new BannedStrategy(application.getEntity().getCurrentMoviesList(),
+                        application.getEntity()
+                                .getCurrentUser()
+                                .getCredentials()
+                                .getCountry()));
 
         if (actionInput.getFilter().getSort() != null) {
-            SORT.filter(application.getEntity(), actionInput.getFilter().getSort());
+            application.getEntity()
+                    .filter(new SortStrategy(application.getEntity().getCurrentMoviesList(),
+                            actionInput.getFilter().getSort()));
         }
 
         if (actionInput.getFilter().getContains() != null) {
-            CONTAINS.filter(application.getEntity(), actionInput.getFilter().getContains());
+            application.getEntity()
+                    .filter(new ContainsStrategy(application.getEntity().getCurrentMoviesList(),
+                            actionInput.getFilter().getContains()));
         }
 
     }

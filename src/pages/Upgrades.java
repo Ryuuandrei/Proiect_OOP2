@@ -11,12 +11,12 @@ import java.util.ArrayList;
 
 public final class Upgrades extends Page {
     private static Upgrades instance = null;
-    private static final BannedStrategy BANNED;
+//    private static final BannedStrategy BANNED;
     private static final int COSTPREMIUM = 10;
 
-    static {
-        BANNED = new BannedStrategy();
-    }
+//    static {
+//        BANNED = new BannedStrategy();
+//    }
 
     private Upgrades() {
     }
@@ -37,8 +37,12 @@ public final class Upgrades extends Page {
         application.getPageStack().push(actionInput);
         application.setCurrentPage(MoviesPage.getInstance());
         application.getEntity().setCurrentMoviesList(new ArrayList<>(application.getMoviesData()));
-        BANNED.filter(application.getEntity(), application.getEntity().getCurrentUser()
-                .getCredentials().getCountry());
+        application.getEntity()
+                .filter(new BannedStrategy(application.getEntity().getCurrentMoviesList(),
+                        application.getEntity()
+                                .getCurrentUser()
+                                .getCredentials()
+                                .getCountry()));
     }
 
     @Override

@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public final class HomePageAuthenticated extends Page {
     private static HomePageAuthenticated instance = null;
-    private static final BannedStrategy BANNED;
-
-    static {
-        BANNED = new BannedStrategy();
-    }
+//    private static final BannedStrategy BANNED;
+//
+//    static {
+//        BANNED = new BannedStrategy();
+//    }
 
     private HomePageAuthenticated() {
     }
@@ -42,8 +42,12 @@ public final class HomePageAuthenticated extends Page {
         application.getPageStack().push(actionInput);
         application.setCurrentPage(MoviesPage.getInstance());
         application.getEntity().setCurrentMoviesList(new ArrayList<>(application.getMoviesData()));
-        BANNED.filter(application.getEntity(), application.getEntity().getCurrentUser()
-                .getCredentials().getCountry());
+        application.getEntity()
+                .filter(new BannedStrategy(application.getEntity().getCurrentMoviesList(),
+                        application.getEntity()
+                                .getCurrentUser()
+                                .getCredentials()
+                                .getCountry()));
     }
 
     @Override

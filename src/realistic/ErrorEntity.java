@@ -99,4 +99,8 @@ public final class ErrorEntity {
         return null;
     }
 
+    public void filter(FilterStrategy filterStrategy) {
+        filterStrategy.filter();
+    }
+
 }
