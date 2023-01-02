@@ -18,14 +18,14 @@ public final class ContainsStrategy implements FilterStrategy {
     public void filter() {
 
         if (contain.getActors() != null) {
-            for (var actor : contain.getActors()) {
+            for (String actor : contain.getActors()) {
                 movies.removeIf(actualMovie -> !(actualMovie
                         .getActors().contains(actor)));
             }
         }
 
         if (contain.getGenre() != null) {
-            for (var genre : contain.getGenre()) {
+            for (String genre : contain.getGenre()) {
                 movies.removeIf(actualMovie -> !(actualMovie
                         .getGenres().contains(genre)));
             }

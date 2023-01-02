@@ -76,8 +76,8 @@ public final class Main {
                         .sorted(Map.Entry.comparingByValue())
                         .forEach(entry -> sortedGenres.add(entry.getKey()));
 
-                for (var genre : sortedGenres) {
-                    for (var recommendedMovie : availableMovies) {
+                for (String genre : sortedGenres) {
+                    for (ActualMovie recommendedMovie : availableMovies) {
                         if (recommendedMovie.getGenres().contains(genre)
                                 && !application.getEntity()
                                 .getCurrentUser()

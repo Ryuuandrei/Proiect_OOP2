@@ -22,7 +22,7 @@ public final class SeeDetails extends Page {
 
     /**
      *
-     * @return the instance for
+     * @return the instance for the see details page
      */
     public static SeeDetails getInstance() {
         if (instance == null) {
@@ -154,7 +154,7 @@ public final class SeeDetails extends Page {
                 .setNumLikes(application.getEntity().getCurrentMoviesList().get(0)
                         .getNumLikes() + 1);
 
-        for (var genre : application.getEntity().getCurrentMoviesList().get(0).getGenres()) {
+        for (String genre : application.getEntity().getCurrentMoviesList().get(0).getGenres()) {
 
             if (!application.getEntity().getCurrentUser().getLikedGenres().containsKey(genre)) {
                 application.getEntity().getCurrentUser().getLikedGenres().put(genre, 1);
@@ -196,6 +196,7 @@ public final class SeeDetails extends Page {
 
         application.getEntity().getCurrentMoviesList().get(0).getRatings().put(application
                 .getEntity().getCurrentUser(), actionInput.getRate());
+
         application.getEntity().getCurrentMoviesList().get(0).computeRating();
     }
 
