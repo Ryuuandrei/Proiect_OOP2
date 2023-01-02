@@ -4,7 +4,7 @@ import changepage.*;
 import command.ActionChangePage;
 import command.ActionOnPage;
 import command.Database;
-import command.Subscribe;
+import features.Subscribe;
 import database.DatabaseAdd;
 import database.DatabaseDelete;
 import features.*;

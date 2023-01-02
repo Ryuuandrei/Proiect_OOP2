@@ -1,5 +1,6 @@
-package command;
+package features;
 
+import command.Action;
 import fileio.ActionInput;
 import pages.Page;
 import realistic.Application;

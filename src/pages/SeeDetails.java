@@ -5,7 +5,7 @@ import changepage.ChPgMovies;
 import changepage.ChPgSeeDetails;
 import changepage.ChPgUpgrades;
 import command.Strategy.BannedStrategy;
-import command.Subscribe;
+import features.Subscribe;
 import features.*;
 import realistic.Application;
 
@@ -114,7 +114,6 @@ public final class SeeDetails extends Page {
         if (application.getEntity().getCurrentUser().getWatchedMovies().stream()
                 .anyMatch((actualMovie -> actualMovie.equals(application.getEntity()
                         .getCurrentMoviesList().get(0))))) {
-            application.getEntity().setError("other");
             return;
         }
 

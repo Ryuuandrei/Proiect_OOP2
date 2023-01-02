@@ -86,15 +86,15 @@ public final class ActionFactory {
                 return new Like(actionInput);
             }
 
+            if (actionInput.getFeature().equals("subscribe")) {
+                return new Subscribe(actionInput);
+            }
+
             return new ActionOnPage(actionInput);
         }
 
         if (actionInput.getType().equals("back")) {
             return new Back();
-        }
-
-        if (actionInput.getType().equals("subscribe")) {
-            return new Subscribe(actionInput);
         }
 
         if (actionInput.getType().equals("database")) {
