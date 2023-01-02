@@ -59,37 +59,7 @@ public final class Main {
         if (application.getEntity().getCurrentUser() != null && application.getEntity()
                 .getCurrentUser().getCredentials().getAccountType().equals("premium")) {
 
-            ActualMovie movie = null;
-            if (!application.getEntity().getCurrentUser().getLikedGenres().isEmpty()) {
-
-                ArrayList<ActualMovie> availableMovies =
-                        new ArrayList<>(application.getMoviesData());
-
-                availableMovies.removeIf(actualMovie -> actualMovie.getCountriesBanned()
-                        .contains(application.getEntity()
-                                .getCurrentUser()
-                                .getCredentials()
-                                .getCountry()));
-                Collections.sort(availableMovies);
-                ArrayList<String> sortedGenres = new ArrayList<>();
-                application.getEntity().getCurrentUser().getLikedGenres().entrySet().stream()
-                        .sorted(Map.Entry.comparingByValue())
-                        .forEach(entry -> sortedGenres.add(entry.getKey()));
-
-                for (String genre : sortedGenres) {
-                    for (ActualMovie recommendedMovie : availableMovies) {
-                        if (recommendedMovie.getGenres().contains(genre)
-                                && !application.getEntity()
-                                .getCurrentUser()
-                                .getLikedMovies()
-                                .contains(recommendedMovie)) {
-                            movie = recommendedMovie;
-                            break;
-                        }
-                    }
-                }
-
-            }
+            ActualMovie movie = application.getEntity().recommend(application);
 
             ErrorEntity out = new ErrorEntity();
             out.setCurrentMoviesList(null);

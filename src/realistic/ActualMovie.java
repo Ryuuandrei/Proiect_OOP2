@@ -12,17 +12,6 @@ public final class ActualMovie extends MovieInput implements Comparable<ActualMo
     private int numRatings;
     @JsonIgnore
     private HashMap<ActualUser, Double> ratings = new HashMap<>();
-    @JsonIgnore
-    private HashMap<ActualUser, Boolean> usersThatLikedTheMovie = new HashMap<>();
-
-    public HashMap<ActualUser, Boolean> getUsersThatLikedTheMovie() {
-        return usersThatLikedTheMovie;
-    }
-
-    public void setUsersThatLikedTheMovie(final HashMap<ActualUser,
-            Boolean> usersThatLikedTheMovie) {
-        this.usersThatLikedTheMovie = usersThatLikedTheMovie;
-    }
 
     public int getNumLikes() {
         return numLikes;
@@ -66,7 +55,6 @@ public final class ActualMovie extends MovieInput implements Comparable<ActualMo
         this.numLikes = other.numLikes;
         this.numRatings = other.numRatings;
         this.ratings = other.ratings;
-        this.usersThatLikedTheMovie = other.usersThatLikedTheMovie;
     }
 
     /**

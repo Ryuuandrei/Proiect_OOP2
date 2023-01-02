@@ -6,6 +6,8 @@ import pages.HomePageAuthenticated;
 import pages.Upgrades;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Map;
 
 public final class ErrorEntity {
     private String error = null;
@@ -99,6 +101,46 @@ public final class ErrorEntity {
         return null;
     }
 
+    /**
+     *
+     * @param application the application
+     * @return the recommended movie for the current premium user
+     */
+    public ActualMovie recommend(final Application application) {
+
+        ActualMovie movie = null;
+        if (!currentUser.getLikedGenres().isEmpty()) {
+
+            ArrayList<ActualMovie> availableMovies =
+                    new ArrayList<>(application.getMoviesData());
+
+            availableMovies.removeIf(actualMovie -> actualMovie.getCountriesBanned()
+                    .contains(application.getEntity()
+                            .getCurrentUser()
+                            .getCredentials()
+                            .getCountry()));
+            Collections.sort(availableMovies);
+            ArrayList<String> sortedGenres = new ArrayList<>();
+            currentUser.getLikedGenres().entrySet().stream()
+                    .sorted(Map.Entry.comparingByValue())
+                    .forEach(entry -> sortedGenres.add(entry.getKey()));
+
+            for (String genre : sortedGenres) {
+                for (ActualMovie recommendedMovie : availableMovies) {
+                    if (recommendedMovie.getGenres().contains(genre)
+                            && !currentUser
+                            .getLikedMovies()
+                            .contains(recommendedMovie)) {
+                        movie = recommendedMovie;
+                        break;
+                    }
+                }
+            }
+
+        }
+        return movie;
+
+    }
     /**
      *
      * @param filterStrategy the filtering option
