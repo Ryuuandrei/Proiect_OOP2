@@ -15,6 +15,7 @@ public final class ActionFactory {
      * @return Specific action type
      */
     public Action getAction(final ActionInput actionInput) {
+
         if (actionInput.getType().equals("change page")) {
 
             if (actionInput.getPage().equals("login")) {

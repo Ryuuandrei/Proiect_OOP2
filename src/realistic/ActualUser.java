@@ -6,6 +6,7 @@ import fileio.UserInput;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 public final class ActualUser extends UserInput {
     private int tokensCount;

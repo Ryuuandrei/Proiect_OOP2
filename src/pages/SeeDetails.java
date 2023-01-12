@@ -59,11 +59,13 @@ public final class SeeDetails extends Page {
 
     @Override
     public void visit(final ChPgUpgrades actionInput, final Application application) {
+        application.getPageStack().add(actionInput);
         application.setCurrentPage(Upgrades.getInstance());
     }
 
     @Override
     public void visit(final ChPgLogout actionInput, final Application application) {
+        application.getPageStack().clear();
         application.getEntity().setCurrentUser(null);
         application.getEntity().setCurrentMoviesList(new ArrayList<>());
         application.setCurrentPage(HomePageUnauthenticated.getInstance());

@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.util.*;
 
 public final class Main {
-    public static int i = 0;
 
     /**
      * @param args args[0] - input;
@@ -76,8 +75,6 @@ public final class Main {
 
         }
 
-
-        i++;
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(args[1]), output);
 

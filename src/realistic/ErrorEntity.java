@@ -115,8 +115,7 @@ public final class ErrorEntity {
                     new ArrayList<>(application.getMoviesData());
 
             availableMovies.removeIf(actualMovie -> actualMovie.getCountriesBanned()
-                    .contains(application.getEntity()
-                            .getCurrentUser()
+                    .contains(currentUser
                             .getCredentials()
                             .getCountry()));
             Collections.sort(availableMovies);
